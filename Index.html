@@ -1,122 +1,75 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GameSite</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>OVO - Game</title>
+<link rel="icon" href="https://ovo.fancade.com/favicon.ico" />
 <style>
-body {
-background-color: #1e1e1e;
-color: #fff;
-font-family: 'Arial', sans-serif;
+html, body {
 margin: 0;
 padding: 0;
+height: 100%;
+overflow: hidden;
+background-color: #000;
 }
-header {
-background-color: #333;
-padding: 20px;
-text-align: center;
-}
-header h1 {
-color: #f39c12;
-font-size: 2.5rem;
-}
-.game-container, .proxy-container {
-display: flex;
-justify-content: center;
-margin-top: 30px;
-}
-iframe {
-width: 80vw;
-height: 60vh;
-border: 2px solid #f39c12;
-border-radius: 10px;
-}
-.proxy-link {
-text-align: center;
-margin-top: 20px;
-}
-.proxy-link a {
-color: #f39c12;
-text-decoration: none;
-font-size: 1.5rem;
-}
-footer {
-background-color: #333;
-padding: 10px;
-text-align: center;
-margin-top: 30px;
-}
-footer p {
-color: #bbb;
-}
-.fullscreen-btn {
-display: block;
-margin: 20px auto;
-padding: 10px 20px;
-background-color: #f39c12;
-color: #fff;
+#gameFrame {
+width: 100%;
+height: 100%;
 border: none;
-font-size: 1.2rem;
+}
+#fs-btn {
+position: absolute;
+top: 10px;
+left: 10px;
+z-index: 9999;
+background-color: #111;
+color: white;
+padding: 8px 12px;
+border: none;
 cursor: pointer;
-border-radius: 5px;
+font-family: monospace;
 }
 </style>
 </head>
 <body>
 
-<header>
-<h1>Welcome to GameSite</h1>
-</header>
-
-<!-- OVO Game Embed -->
-<div class="game-container">
-<iframe id="gameFrame" src="https://ovogame.com" frameborder="0" allowfullscreen></iframe>
-</div>
-
-<!-- Full-Screen Button for the Game -->
-<button class="fullscreen-btn" onclick="toggleFullscreen('gameFrame')">Go Full-Screen (Game)</button>
-
-<!-- Proxy Embed (Example with Rammerhead) -->
-<div class="proxy-container">
-<iframe id="proxyFrame" src="https://rammerhead.xyz" frameborder="0" allowfullscreen></iframe>
-</div>
-
-<!-- Full-Screen Button for Proxy -->
-<button class="fullscreen-btn" onclick="toggleFullscreen('proxyFrame')">Go Full-Screen (Proxy)</button>
-
-<!-- Proxy Link -->
-<div class="proxy-link">
-<p>Access through Proxy: </p>
-<a href="https://rammerhead.xyz" target="_blank">Rammerhead Proxy</a>
-</div>
-
-<footer>
-<p>GameSite - Powered by YOU 💥</p>
-</footer>
+<button id="fs-btn">Fullscreen</button>
+<iframe id="gameFrame" src="https://ovogame.io/" allowfullscreen></iframe>
 
 <script>
-// Anti-close feature to prevent browser tab closing
-window.onbeforeunload = function() {
-return "Are you sure you want to leave?";
+const fsBtn = document.getElementById("fs-btn");
+const iframe = document.getElementById("gameFrame");
+
+fsBtn.onclick = () => {
+if (iframe.requestFullscreen) {
+iframe.requestFullscreen();
+} else if (iframe.webkitRequestFullscreen) {
+iframe.webkitRequestFullscreen();
+} else if (iframe.msRequestFullscreen) {
+iframe.msRequestFullscreen();
+}
 };
 
-// Function to toggle full-screen mode for both Game and Proxy
-function toggleFullscreen(elementId) {
-const element = document.getElementById(elementId);
-if (element.requestFullscreen) {
-element.requestFullscreen();
-} else if (element.mozRequestFullScreen) { // Firefox
-element.mozRequestFullScreen();
-} else if (element.webkitRequestFullscreen) { // Chrome, Safari, Opera
-element.webkitRequestFullscreen();
-} else if (element.msRequestFullscreen) { // IE/Edge
-element.msRequestFullscreen();
+// Optional: Open in about:blank cloak
+function openInBlank() {
+const win = window.open();
+if (win) {
+win.document.write(`
+<iframe src="${location.href}" style="border:0;width:100vw;height:100vh;"></iframe>
+`);
+win.document.title = "Google Docs";
+win.document.body.style.margin = "0";
+win.document.body.style.overflow = "hidden";
+win.document.querySelector("iframe").focus();
+} else {
+alert("Popup blocked! Enable popups to cloak in about:blank.");
 }
 }
+
+// Optional: Auto open in blank on load
+// openInBlank();
 </script>
 
 </body>
 </html>
-
