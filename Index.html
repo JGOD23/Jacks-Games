@@ -1,49 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>OVO Fullscreen</title>
-<style>
-body {
-background-color: #111;
-color: white;
-font-family: Arial, sans-serif;
-text-align: center;
-margin-top: 80px;
-}
-
-button {
-padding: 15px 30px;
-font-size: 18px;
-border: none;
-background-color: #1e90ff;
-color: white;
-border-radius: 8px;
-cursor: pointer;
-transition: 0.3s;
-}
-
-button:hover {
-background-color: #0e70d1;
-}
-</style>
+<title>Unblocked Game Hub</title>
 </head>
-<body>
+<body style="background-color:#111; color:white; font-family:sans-serif; text-align:center; padding-top:50px;">
+<h1>Welcome to the Game Hub</h1>
+<p>Select a game or proxy below:</p>
 
-<h1>Play OVO Fullscreen</h1>
-<p>Click the button below to open OVO in fullscreen (about:blank tab)</p>
-<button onclick="launchOVO()">Launch OVO</button>
+<!-- Ovo Game (Local if downloaded) -->
+<div style="margin:20px;">
+<a href="games/ovo/index.html" target="_blank" style="font-size:20px; color:#00ffcc;">Play Ovo</a>
+</div>
 
-<script>
-function launchOVO() {
-const gameUrl = "https://ovo.sfo3.cdn.digitaloceanspaces.com/index.html"; // Stable mirror
-const win = window.open();
-win.document.write(`
-<iframe src="${gameUrl}" style="position:fixed;top:0;left:0;width:100vw;height:100vh;border:none;z-index:9999;"></iframe>
-`);
-}
-</script>
+<!-- Rammerhead Proxy -->
+<div style="margin:20px;">
+<a href="https://rammerhead.exampledomain.workers.dev" target="_blank" style="font-size:20px; color:#00ffcc;">Launch Rammerhead Proxy</a>
+</div>
 
+<!-- Fullscreen Button -->
+<div style="margin-top:40px;">
+<a href="about:blank" onclick="document.documentElement.requestFullscreen();" style="font-size:16px; color:yellow;">[Go Fullscreen]</a>
+</div>
 </body>
 </html>
-
