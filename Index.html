@@ -1,25 +1,64 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Unblocked Game Hub</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title id="page-title">My Game Hub</title>
+<link id="favicon" rel="icon" href="https://www.google.com/favicon.ico" />
+<style>
+body { font-family: Arial, sans-serif; background: #1e1e1e; color: #fff; margin: 0; padding: 0; }
+header { background: #333; padding: 10px; text-align: center; }
+#search-bar { width: 80%; padding: 10px; margin: 20px auto; display: block; }
+#settings { position: fixed; top: 10px; right: 10px; background: #444; padding: 10px; border-radius: 5px; z-index: 999; }
+iframe { width: 100%; height: 80vh; border: none; margin-top: 10px; }
+label { font-size: 14px; }
+input[type="text"] { border-radius: 4px; border: none; }
+</style>
 </head>
-<body style="background-color:#111; color:white; font-family:sans-serif; text-align:center; padding-top:50px;">
-<h1>Welcome to the Game Hub</h1>
-<p>Select a game or proxy below:</p>
+<body>
+<header>
+<h1>My Game Hub</h1>
+</header>
 
-<!-- Ovo Game (Local if downloaded) -->
-<div style="margin:20px;">
-<a href="games/ovo/index.html" target="_blank" style="font-size:20px; color:#00ffcc;">Play Ovo</a>
+<input type="text" id="search-bar" placeholder="Search games..." />
+
+<div id="settings">
+<label>
+<input type="checkbox" id="anti-close" />
+Anti-Close
+</label><br>
+<label>
+Tab Title:
+<input type="text" id="title-input" placeholder="Enter tab title" />
+</label><br>
+<label>
+Tab Icon URL:
+<input type="text" id="favicon-input" placeholder="Enter icon URL" />
+</label><br>
+<button onclick="applyCloak()">Apply Cloak</button>
 </div>
 
-<!-- Rammerhead Proxy -->
-<div style="margin:20px;">
-<a href="https://rammerhead.exampledomain.workers.dev" target="_blank" style="font-size:20px; color:#00ffcc;">Launch Rammerhead Proxy</a>
-</div>
+<iframe id="proxy-frame" src="https://free.robux.networkindia.com/"></iframe>
 
-<!-- Fullscreen Button -->
-<div style="margin-top:40px;">
-<a href="about:blank" onclick="document.documentElement.requestFullscreen();" style="font-size:16px; color:yellow;">[Go Fullscreen]</a>
-</div>
+<script>
+// Anti-close
+document.getElementById('anti-close').addEventListener('change', function() {
+if (this.checked) {
+window.onbeforeunload = () => true;
+} else {
+window.onbeforeunload = null;
+}
+});
+
+// Tab cloaking
+function applyCloak() {
+const title = document.getElementById('title-input').value;
+const icon = document.getElementById('favicon-input').value;
+if (title) document.title = title;
+if (icon) document.getElementById('favicon').href = icon;
+}
+</script>
 </body>
 </html>
+
